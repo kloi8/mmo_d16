@@ -1,0 +1,24 @@
+{% extends 'flatpages/default.html' %}
+
+{% block content %}
+
+<h1>Отклики</h1>
+<br><br>
+    <h3>Мои отклики на объявления:</h3>
+    {% if responses %}
+        {% for response in responses %}
+            <a><b>Объявление:</b></a>
+            <a href="/post/{{ response.post_id }}" style="font-size: 20px;"><b>{{ response.post.title }}</b></a><br>
+            <span style="font-size: 12px;"><b>Автор:  {{ response.post.author.username }} |
+                дата публикации: {{ response.post.dateCreation|date:'d.M.Y' }} г.</b></span><br>
+            <a><b>Мой отклик:</b></a>
+            {{ response.text }}<br>
+            <span style="font-size: 12px;"><b>Дата публикации отклика: {{ response.dateCreation|date:'d.M.Y' }} г.</b></span><br><br>
+        {% endfor %}
+    {% else %}
+        <br><br>
+        <h2>Откликов нет!</h2>
+    {% endif %}
+
+
+{% endblock content %}
